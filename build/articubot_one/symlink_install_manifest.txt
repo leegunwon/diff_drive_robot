@@ -2,6 +2,7 @@
 /home/gunwon/last_ws/install/articubot_one/share/articubot_one/config/empty.yaml
 /home/gunwon/last_ws/install/articubot_one/share/articubot_one/config/gaz_ros2_ctl_use_sim.yaml
 /home/gunwon/last_ws/install/articubot_one/share/articubot_one/config/gazebo_params.yaml
+/home/gunwon/last_ws/install/articubot_one/share/articubot_one/config/gun.rviz
 /home/gunwon/last_ws/install/articubot_one/share/articubot_one/config/joystick.yaml
 /home/gunwon/last_ws/install/articubot_one/share/articubot_one/config/main.rviz
 /home/gunwon/last_ws/install/articubot_one/share/articubot_one/config/map.rviz
@@ -28,8 +29,12 @@
 /home/gunwon/last_ws/install/articubot_one/share/articubot_one/launch/online_async_launch.py
 /home/gunwon/last_ws/install/articubot_one/share/articubot_one/launch/rplidar.launch.py
 /home/gunwon/last_ws/install/articubot_one/share/articubot_one/launch/rsp.launch.py
+/home/gunwon/last_ws/install/articubot_one/share/articubot_one/launch/teleop_launch.py
 /home/gunwon/last_ws/install/articubot_one/share/articubot_one/worlds/empty.world
+/home/gunwon/last_ws/install/articubot_one/share/articubot_one/worlds/no_roof_small_warehouse.world
 /home/gunwon/last_ws/install/articubot_one/share/articubot_one/worlds/obstacles.world
+/home/gunwon/last_ws/install/articubot_one/share/articubot_one/worlds/prac.world
+/home/gunwon/last_ws/install/articubot_one/share/articubot_one/worlds/small_warehouse.world
 /home/gunwon/last_ws/install/articubot_one/share/ament_index/resource_index/package_run_dependencies/articubot_one
 /home/gunwon/last_ws/install/articubot_one/share/ament_index/resource_index/parent_prefix_path/articubot_one
 /home/gunwon/last_ws/install/articubot_one/share/articubot_one/environment/ament_prefix_path.sh

@@ -1,17 +1,3 @@
-# Copyright (c) 2018 Intel Corporation
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 import os
 
 from ament_index_python.packages import get_package_share_directory
@@ -30,6 +16,7 @@ def generate_launch_description():
     namespace = LaunchConfiguration('namespace')
     use_sim_time = LaunchConfiguration('use_sim_time')
     autostart = LaunchConfiguration('autostart')
+    map_yaml_file = LaunchConfiguration('map')
     params_file = LaunchConfiguration('params_file')
     default_bt_xml_filename = LaunchConfiguration('default_bt_xml_filename')
     map_subscribe_transient_local = LaunchConfiguration('map_subscribe_transient_local')
@@ -38,7 +25,8 @@ def generate_launch_description():
                        'planner_server',
                        'recoveries_server',
                        'bt_navigator',
-                       'waypoint_follower']
+                       'waypoint_follower',
+                       'amcl']
 
     # Map fully qualified names to relative ones so the node's namespace can be prepended.
     # In case of the transforms (tf), currently, there doesn't seem to be a better alternative
@@ -51,10 +39,11 @@ def generate_launch_description():
 
     # Create our own temporary YAML files that include substitutions
     param_substitutions = {
-        'use_sim_time': use_sim_time,
+        'use_sim_time': True,
         'default_bt_xml_filename': default_bt_xml_filename,
         'autostart': autostart,
-        'map_subscribe_transient_local': map_subscribe_transient_local}
+        'map_subscribe_transient_local': map_subscribe_transient_local,
+        'yaml_filename': map_yaml_file}
 
     configured_params = RewrittenYaml(
             source_file=params_file,
@@ -69,6 +58,11 @@ def generate_launch_description():
         DeclareLaunchArgument(
             'namespace', default_value='',
             description='Top-level namespace'),
+
+        DeclareLaunchArgument(
+            'map',
+            default_value=os.path.join(bringup_dir, 'my_map.yaml'),
+            description='Full path to map yaml file to load'),
 
         DeclareLaunchArgument(
             'use_sim_time', default_value='false',
@@ -129,6 +123,22 @@ def generate_launch_description():
             package='nav2_waypoint_follower',
             executable='waypoint_follower',
             name='waypoint_follower',
+            output='screen',
+            parameters=[configured_params],
+            remappings=remappings),
+
+        Node(
+            package='nav2_amcl',
+            executable='amcl',
+            name='amcl',
+            output='screen',
+            parameters=[configured_params],
+            remappings=remappings),
+
+        Node(
+            package='nav2_map_server',
+            executable='map_server',
+            name='map_server',
             output='screen',
             parameters=[configured_params],
             remappings=remappings),

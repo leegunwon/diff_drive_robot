@@ -1,5 +1,5 @@
 set(_AMENT_PACKAGE_NAME "articubot_one")
-set(articubot_one_VERSION "0.0.0")
+set(articubot_one_VERSION "0.0.1")
 set(articubot_one_MAINTAINER "Josh Newans <my_email@email.com>")
 set(articubot_one_BUILD_DEPENDS )
 set(articubot_one_BUILDTOOL_DEPENDS "ament_cmake")

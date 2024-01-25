@@ -16,7 +16,7 @@ set(_articubot_one_CONFIG_INCLUDED TRUE)
 
 # output package information
 if(NOT articubot_one_FIND_QUIETLY)
-  message(STATUS "Found articubot_one: 0.0.0 (${articubot_one_DIR})")
+  message(STATUS "Found articubot_one: 0.0.1 (${articubot_one_DIR})")
 endif()
 
 # warn when using a deprecated package
